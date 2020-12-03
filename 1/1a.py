@@ -3,7 +3,9 @@
 """
 Created on Thu Dec  3 13:09:49 2020
 
-@author: westmr
+@author: Mckenzie West
+
+Advent of Code 2020: Day 1
 """
 
 def load_and_clean(filename):
@@ -35,5 +37,3 @@ def solve_second(filename="ints.txt",year=2020):
             break
     assert a+b+c == year
     return a*b*c
-
-print(solve_second())
