@@ -5,7 +5,7 @@ Created on Thu Dec  3 13:09:49 2020
 
 @author: Mckenzie West
 
-Advent of Code 2020: Day 4
+Advent of Code 2020: Day 6
 """
 
 import string
