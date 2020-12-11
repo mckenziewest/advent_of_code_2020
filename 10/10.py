@@ -9,6 +9,10 @@ Advent of Code 2020: Day 10
 """
 
 
+from time import time
+from functools import lru_cache
+
+
 def load_and_clean(filename):
     with open(filename) as inputs:
         string_list = inputs.readlines()
@@ -26,7 +30,6 @@ def solve_first(filename='input.txt'):
     return threes*ones
 print(solve_first())
 
-from functools import lru_cache
 
 @lru_cache(maxsize=None)
 def num_next(voltage_list,value):
@@ -46,12 +49,21 @@ def num_next(voltage_list,value):
 def solve_second(filename='input.txt'):
     voltage_list = (int(a) for a in load_and_clean(filename))
     return num_next(voltage_list,0)
-print(solve_second())
 
-        
-def fib(n):
-    if n == 1 or n == 0:
-        return 1
-    else:
-        return fib(n-1)+fib(n-2)
-#print([fib(n) for n in range(8)])
+start = time()
+print(solve_second())
+print(time() - start)
+
+def let_me_cache(filename = 'input.txt'):
+    voltage_list = [int(a) for a in load_and_clean(filename)]
+    voltage_list.append(0)
+    voltage_list.sort()
+    voltage_list.reverse()
+    cum_follows = {max(voltage_list):1}
+    for i in voltage_list[1:]:
+        cum_follows[i] = sum([cum_follows[j] for j in range(i+1,i+4) if j in voltage_list])
+    return cum_follows[0]
+
+start = time()
+print(let_me_cache())
+print(time() - start)
